@@ -4970,11 +4970,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vinic\\Desktop\\SistemaMedicao\\Medição\\Medição.csproj",
+      "projectUniqueName": "C:\\Users\\vinic\\Desktop\\Sistema-de-Medicao\\Medição\\Medição.csproj",
       "projectName": "Medição",
-      "projectPath": "C:\\Users\\vinic\\Desktop\\SistemaMedicao\\Medição\\Medição.csproj",
+      "projectPath": "C:\\Users\\vinic\\Desktop\\Sistema-de-Medicao\\Medição\\Medição.csproj",
       "packagesPath": "C:\\Users\\vinic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vinic\\Desktop\\SistemaMedicao\\Medição\\obj\\",
+      "outputPath": "C:\\Users\\vinic\\Desktop\\Sistema-de-Medicao\\Medição\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\vinic\\AppData\\Roaming\\NuGet\\NuGet.Config",

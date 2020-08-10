@@ -5,11 +5,11 @@
       <div class="column">
         <nav class="panel">
           <p class="panel-heading level">
-            Colaboradores
+            Medições
           </p>
           <div>
           <div class="level-left">
-              <b-button type="is-info mr-3" @click="getPessoas" icon-left="refresh">Atualizar</b-button>
+              <b-button type="is-info mr-3" @click="getMedicoes" icon-left="refresh">Atualizar</b-button>
               <b-button type="is-info" tag="router-link" to="/novocolaborador" icon-left="account-plus">Novo</b-button>
           </div>
           <div class="level-r"></div>
@@ -21,19 +21,13 @@
                 label="Nome"
                 sortable 
                 centered>
-                {{props.row.nome}}
+                {{props.row.pessoas.nome}}
               </b-table-column>
               <b-table-column
                 field="sobrenome"
                 label="Sobrenome"
                 centered>
-                {{props.row.sobrenome}}
-              </b-table-column>
-              <b-table-column
-                field="email"
-                label="Email"
-                centered>
-                {{props.row.email}}
+                {{props.row.pessoas.sobrenome}}
               </b-table-column>
               <b-table-column
                 field="setor"
@@ -43,11 +37,16 @@
                 {{props.row.setor.nome}}
               </b-table-column>
               <b-table-column
+                field="temperatura"
+                label="Temperatura"
+                centered>
+                {{props.row.temperatura}}
+              </b-table-column>
+              <b-table-column
                 field="acoes"
                 label="Ações"
                 centered>
-                <b-button type="is-warning mr-1" icon-left="account-edit" tag="router-link" :to="'/editarcolaborador/' + props.row.id">Editar</b-button>
-                <b-button type="is-danger" icon-left="delete" @click="deletePessoa(props.row.id)">Excluir</b-button>
+                <b-button type="is-danger" icon-left="delete" @click="deleteMedicao(props.row.id)">Excluir</b-button>
               </b-table-column>
             </template>
             <template slot="empty">
@@ -59,7 +58,7 @@
                                 size="is-large">
                             </b-icon>
                         </p>
-                        <p>Ainda não temos colaboradores cadastrados.</p>
+                        <p>Ainda não temos medições cadastradas.</p>
                     </div>
                 </section>
             </template>
@@ -76,39 +75,39 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      pessoas: [],
+      medicoes: [],
       columns: [
         { field: 'nome', label: 'Nome' },
         { field: 'sobrenome', label: 'Sobrenome' },
         { field: 'setor', label: 'Setor' },
-        { field: 'email', label: 'Email'}
+        { field: 'temperatura', label: 'Temperatura'}
       ]
     }
   },
   methods: {
-    getPessoas () {
-      axios.get('http://localhost:5000/api/pessoa').then(ret => {
+    getMedicoes () {
+      axios.get('http://localhost:5000/api/medicao').then(ret => {
         this.pessoas = ret.data
       })
     },
-    deletePessoa (id) {
-      axios.delete('http://localhost:5000/api/pessoa/' + id).then(() => {
+    deleteMedicao (id) {
+      axios.delete('http://localhost:5000/api/medicao/' + id).then(() => {
         this.$buefy.toast.open({
-          message: 'Pessoa deletada com sucesso.',
+          message: 'Medição deletada com sucesso.',
           type: 'is-success'
         })
-        this.getPessoas()
+        this.getMedicoes()
       }).catch(() => {
         this.$buefy.toast.open({
-          message: 'erro ao deletar pessoa.',
+          message: 'erro ao deletar medição.',
           type: 'is-danger'
         })
       })
-    }
-  },
+    },
   mounted () {
-    this.getPessoas()
+    this.getMedicoes()
   }
+}
 }
 </script>
 

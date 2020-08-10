@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/zJTtd20/knQuTJu5nYyoh9BSjYeKdkw75txPJedD+wl1+vAWQ/5Yvs/GadIdS0iIjr1aju6BO1hBWxW+iV4gw==",
+  "dgSpecHash": "TPTr5XbamO0MVsqsprRI5NpDTnu5Jwx+/4PiVvJQugpBqEclpuLKGl/nqUd0tAQi/n7OlY9uBHRbxRUs/iQYug==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vinic\\Desktop\\SistemaMedicao\\Medição\\Medição.csproj",
+  "projectFilePath": "C:\\Users\\vinic\\Desktop\\Sistema-de-Medicao\\Medição\\Medição.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
