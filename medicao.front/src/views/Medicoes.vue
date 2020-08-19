@@ -10,35 +10,36 @@
           <div>
           <div class="level-left">
               <b-button type="is-info mr-3" @click="getMedicoes" icon-left="refresh">Atualizar</b-button>
-              <b-button type="is-info" tag="router-link" to="/novocolaborador" icon-left="account-plus">Novo</b-button>
+              <b-button type="is-info" tag="router-link" to="/novamedicao" icon-left="thermometer-plus">Nova</b-button>
           </div>
           <div class="level-r"></div>
           </div>
-          <b-table :data="pessoas" focusable>
+          <b-table :data="medicoes" focusable>
             <template slot-scope="props">
               <b-table-column
                 field="nome"
                 label="Nome"
                 sortable 
                 centered>
-                {{props.row.pessoas.nome}}
+                {{props.row.pessoa.nome}}
               </b-table-column>
               <b-table-column
                 field="sobrenome"
                 label="Sobrenome"
                 centered>
-                {{props.row.pessoas.sobrenome}}
+                {{props.row.pessoa.sobrenome}}
               </b-table-column>
               <b-table-column
                 field="setor"
                 label="Setor"
                 sortable
                 centered>
-                {{props.row.setor.nome}}
+                {{props.row.pessoa.setorId}}
               </b-table-column>
               <b-table-column
                 field="temperatura"
                 label="Temperatura"
+                sortable
                 centered>
                 {{props.row.temperatura}}
               </b-table-column>
@@ -46,10 +47,11 @@
                 field="acoes"
                 label="Ações"
                 centered>
+                <b-button type="is-warning mr-1" icon-left="account-edit" tag="router-link" :to="'/editarcolaborador/' + props.row.id">Editar</b-button>
                 <b-button type="is-danger" icon-left="delete" @click="deleteMedicao(props.row.id)">Excluir</b-button>
               </b-table-column>
             </template>
-            <template slot="empty">
+            <!--<template slot="empty">
                 <section class="section">
                     <div class="content has-text-grey has-text-centered">
                         <p>
@@ -61,7 +63,7 @@
                         <p>Ainda não temos medições cadastradas.</p>
                     </div>
                 </section>
-            </template>
+            </template>-->
           </b-table>
         </nav>
       </div>
@@ -77,17 +79,23 @@ export default {
     return {
       medicoes: [],
       columns: [
+        /*{ field: 'temperatura', label: 'Temperatura'},
         { field: 'nome', label: 'Nome' },
         { field: 'sobrenome', label: 'Sobrenome' },
         { field: 'setor', label: 'Setor' },
-        { field: 'temperatura', label: 'Temperatura'}
+        { field: 'email', label: 'Email'}*/
       ]
     }
   },
   methods: {
     getMedicoes () {
       axios.get('http://localhost:5000/api/medicao').then(ret => {
-        this.pessoas = ret.data
+        this.medicoes = ret.data
+      })
+    },
+    getSetores () {
+      axios.get('http://localhost:5000/api/setor').then(ret => {
+        this.setores = ret.data
       })
     },
     deleteMedicao (id) {
@@ -99,15 +107,15 @@ export default {
         this.getMedicoes()
       }).catch(() => {
         this.$buefy.toast.open({
-          message: 'erro ao deletar medição.',
+          message: 'Erro ao deletar medição.',
           type: 'is-danger'
         })
       })
-    },
+    }
+  },
   mounted () {
     this.getMedicoes()
   }
-}
 }
 </script>
 

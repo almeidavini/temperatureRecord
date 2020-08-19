@@ -77,12 +77,12 @@ export default {
   data () {
     return {
       pessoas: [],
-      columns: [
+      /*columns: [
         { field: 'nome', label: 'Nome' },
         { field: 'sobrenome', label: 'Sobrenome' },
         { field: 'setor', label: 'Setor' },
         { field: 'email', label: 'Email'}
-      ]
+      ]*/
     }
   },
   methods: {

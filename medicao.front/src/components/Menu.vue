@@ -6,7 +6,7 @@
                 <img src="../assets/logo.png" alt="Serget">
             </b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <strong>Sistema de medição</strong>
+                <strong>SISTEMA DE MEDIÇÃO</strong>
             </b-navbar-item>
         </template>
         <template slot="end">

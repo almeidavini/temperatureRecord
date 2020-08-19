@@ -29,7 +29,7 @@
                         <div class="media">
                             <div class="media-content">
                                 <p class="title is-4">John Smith</p>
-                                <p class="subtitle is-6">@johnsmith</p>
+                                <label class="subtitle is-6">tetsfgv</label>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                                     v-model="setor"
                                     :data="filteredDataSetor"
                                     field="nome"
-                                    placeholder="Selecione o exame"
+                                    placeholder="Selecione o exam"
                                     icon="magnify"
                                     clearable
                                     @select="option => selectedSetor = option.id">

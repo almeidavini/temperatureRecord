@@ -28,11 +28,18 @@
               <b-input v-model="pessoa.email"></b-input>
             </b-field>
             <b-field label="Setor">
-              <b-select v-model="pessoa.setorId" placeholder="Selecione o setor" expanded>
-                <option value="1">Tecnologia da Informação</option>
-                <option value="2">Financeiro</option>
-                <option value="3">Recursos Humanos</option>
-              </b-select>
+              <b-autocomplete rounded
+                v-model="setor"
+                :data="filteredDataSetor"
+                field="nome"
+                placeholder="Selecione o setor"
+                icon="magnify"
+                clearable
+                @select="option => selectedSetor = option.id">
+                  <template slot="empty">
+                    No results found
+                  </template>
+              </b-autocomplete>
             </b-field>
           </div>
           <div class="column is-2"></div>
@@ -57,7 +64,7 @@
           </div>
         </div>
         <div class="container has-text-centered" id="button">
-          <b-button class="mt-4" icon-left="account-plus" type="is-twitter" @click="alterarPessoa">Cadastrar colaborador</b-button>
+          <b-button class="mt-4" icon-left="account-plus" type="is-twitter" @click="adicionarPessoa">Cadastrar colaborador</b-button>
         </div>    
     </section>
 </template>
@@ -71,8 +78,21 @@ export default {
         nome: '',
         sobrenome: '',
         email: '',
-        setorId: ''
-      }
+        setorId: 0,
+      },
+      setores: [],
+      setor: '',
+      selected: null,
+    }
+  },
+  computed: {
+    filteredDataSetor () {
+      return this.setores.filter((option) => {
+        return option.nome
+          .toString()
+          .toLowerCase()
+          .indexOf(this.setor.toLowerCase()) >= 0
+      })
     }
   },
   methods: {
@@ -91,6 +111,11 @@ export default {
           message: 'Ocorreu um erro ao adicionar a pesosa.',
           type: 'is-error'
         })
+      })
+    },
+    getSetores () {
+      axios.get('http://localhost:5000/api/setor').then(ret => {
+        this.setores = ret.data
       })
     }
   }
@@ -116,63 +141,3 @@ export default {
     margin-top: 8%;
   }
 </style>
-
-<!--<template>
-    <section>
-      <b-loading :is-full-page="true" :active.sync="isLoading" :can-cancel="false"></b-loading>
-      <div class="px-4 py-4" style="max-width: 400px">
-        <span class="is-size-4">Nova Pessoa</span>
-        <b-field label="Nome" class="pt-5">
-            <b-input v-model="pessoa.nome"></b-input>
-        </b-field>
-        <b-field label="Sobrenome">
-            <b-input v-model="pessoa.sobrenome"></b-input>
-        </b-field>
-        <b-field label="E-mail">
-            <b-input v-model="pessoa.email"></b-input>
-        </b-field>
-        <b-field label="Setor">
-            <b-select placeholder="Selecione um setor" required expanded>
-                <option value="flint">Flint</option>
-                <option value="silver">Silver</option>
-            </b-select>
-        </b-field>
-        <b-button class="mt-4" icon-left="account-plus" type="is-primary" @click="adicionarPessoa">Adicionar</b-button>
-    </div>
-    </section>
-
-</template>
-<script>
-import axios from 'axios'
-export default {
-  data () {
-    return {
-      isLoading: false,
-      pessoa: {
-        nome: '',
-        sobrenome: '',
-        nascimento: new Date()
-      }
-    }
-  },
-  methods: {
-    adicionarPessoa () {
-      this.isLoading = true
-
-      axios.post('http://localhost:5000/api/pessoa', this.pessoa).then(() => {
-        this.isLoading = false
-        this.$buefy.toast.open({
-          message: 'Pessoa adicionada com sucesso.',
-          type: 'is-success'
-        })
-      }).catch(() => {
-        this.isLoading = false
-        this.$buefy.toast.open({
-          message: 'Ocorreu um erro ao adicionar a pesosa.',
-          type: 'is-error'
-        })
-      })
-    }
-  }
-}
-</script>-->
