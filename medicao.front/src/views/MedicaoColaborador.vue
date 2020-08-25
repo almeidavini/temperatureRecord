@@ -7,10 +7,10 @@
             <div class="hero is-primary is-bold">
                 <div class="container has-text-centered">
                     <h1 class="title">
-                        Atualização de cadastro
+                      Cadastro de medição
                     </h1>
                     <h2 class="subtitle">
-                        Editar colaborador
+                      Medição de temperatura
                     </h2>
                 </div>
             </div>
@@ -39,44 +39,38 @@
             <div class="column is-4">
               <div class="field">
                 <b-field label="Número de identificação" class="pt-2">
-                    <b-input v-model="pessoa.id" disabled></b-input>
+                    <b-label>{{pessoa.id}}</b-label>
                 </b-field>
               </div>
               <div class="field">
                 <b-field label="Nome" class="pt-2">
-                    <b-input v-model="pessoa.nome"></b-input>
+                    <b-label>{{pessoa.nome}}</b-label>
                 </b-field>
               </div>
                 <div class="field">
                 <b-field label="Sobrenome" class="pt-2">
-                    <b-input v-model="pessoa.sobrenome"></b-input>
+                    <b-label>{{pessoa.sobrenome}}</b-label>
                 </b-field>
                 </div>
                 <div class="field">
                 <b-field label="E-mail" class="pt-2">
-                    <b-input v-model="pessoa.email"></b-input>
+                    <b-label>{{pessoa.email}}</b-label>
                 </b-field>
                 </div>
                 <div class="field">
-                  <b-field label="Setor">
-                    <b-autocomplete rounded
-                                    v-model="setor"
-                                    :data="filteredDataSetor"
-                                    field="nome"
-                                    placeholder="Selecione o setor"
-                                    icon="magnify"
-                                    clearable
-                                    @select="option => selectedSetor = option.id">
-                      <template slot="empty">
-                        No results found
-                      </template>
-                    </b-autocomplete>
+                  <b-field label="Setor" class="pt-2">
+                    <b-label>{{setor}}</b-label>
+                  </b-field>
+                </div>
+                 <div class="field">
+                  <b-field label="Setor" class="pt-2">
+                    <b-input v-model="temperatura"></b-input>
                   </b-field>
                 </div>
             </div>
         </div>
         <div class="container has-text-centered" id="button">
-            <b-button class="mt-4" icon-left="account-check" type="is-twitter" @click="alterarPessoa">Salvar Alterações</b-button>
+            <b-button class="mt-4" icon-left="thermometer-plus" type="is-twitter" @click="adicionarMedicao">Cadastrar Medição</b-button>
         </div>    
     </section>
 </template>
@@ -94,18 +88,7 @@ export default {
         setorId: 0
       },
       setores: [],
-      setor: '',
-      selectedSetor: null
-    }
-  },
-  computed: {
-    filteredDataSetor () {
-      return this.setores.filter((option) => {
-        return option.nome
-          .toString()
-          .toLowerCase()
-          .indexOf(this.setor.toLowerCase()) >= 0
-      })
+      setor: ''
     }
   },
   mounted () {
@@ -128,11 +111,6 @@ export default {
   methods: {
     alterarPessoa () {
       this.isLoading = true
-
-      if (this.selectedSetor != null) {
-        this.pessoa.setorId = parseInt(this.selectedSetor)
-      }
-
       this.pessoa.setor = null
       
       axios.put('http://localhost:5000/api/pessoa/' + this.pessoaid, this.pessoa).then(() => {
@@ -146,6 +124,22 @@ export default {
         this.$buefy.toast.open({
           message: 'Ocorreu um erro ao alterar a pesosa.',
           type: 'is-danger'
+        })
+      })
+    },
+    adicionarMedicao () {
+      this.isLoading = true
+      axios.post('http://localhost:5000/api/medicao', this.medicao).then(() => {
+        this.isLoading = false
+        this.$buefy.toast.open({
+          message: 'Medicao adicionada com sucesso.',
+          type: 'is-success'
+        })
+      }).catch(() => {
+        this.isLoading = false
+        this.$buefy.toast.open({
+          message: 'Ocorreu um erro ao adicionar a medição.',
+          type: 'is-error'
         })
       })
     },

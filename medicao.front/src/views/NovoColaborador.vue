@@ -95,9 +95,18 @@ export default {
       })
     }
   },
+  mounted () {
+    this.getSetores()
+  },
   methods: {
     adicionarPessoa () {
       this.isLoading = true
+
+      if (this.selectedSetor != null) {
+        this.pessoa.setorId = parseInt(this.selectedSetor)
+      }
+
+      this.pessoa.setor = null
 
       axios.post('http://localhost:5000/api/pessoa', this.pessoa).then(() => {
         this.isLoading = false

@@ -5,12 +5,11 @@
       <div class="column">
         <nav class="panel">
           <p class="panel-heading level">
-            Colaboradores
+            Cadastro de medição
           </p>
           <div>
           <div class="level-left">
               <b-button type="is-info mr-3" @click="getPessoas" icon-left="refresh">Atualizar</b-button>
-              <b-button type="is-info" tag="router-link" to="/novocolaborador" icon-left="account-plus">Novo</b-button>
           </div>
           <div class="level-r"></div>
           </div>
@@ -46,8 +45,7 @@
                 field="acoes"
                 label="Ações"
                 centered>
-                <b-button type="is-warning mr-1" icon-left="account-edit" tag="router-link" :to="'/editarcolaborador/' + props.row.id">Editar</b-button>
-                <b-button type="is-danger" icon-left="delete" @click="deletePessoa(props.row.id)">Excluir</b-button>
+                <b-button type="is-success mr-1" icon-left="thermometer-plus" tag="router-link" :to="'/medicaocolaborador/' + props.row.id">Medição</b-button>
               </b-table-column>
             </template>
             <template slot="empty">
@@ -66,7 +64,6 @@
           </b-table>
         </nav>
       </div>
-      <!--<div class="column is-1"></div>-->
     </div>
   </section>
 </template>
@@ -89,20 +86,6 @@ export default {
     getPessoas () {
       axios.get('http://localhost:5000/api/pessoa').then(ret => {
         this.pessoas = ret.data
-      })
-    },
-    deletePessoa (id) {
-      axios.delete('http://localhost:5000/api/pessoa/' + id).then(() => {
-        this.$buefy.toast.open({
-          message: 'Pessoa deletada com sucesso.',
-          type: 'is-success'
-        })
-        this.getPessoas()
-      }).catch(() => {
-        this.$buefy.toast.open({
-          message: 'erro ao deletar pessoa.',
-          type: 'is-danger'
-        })
       })
     }
   },

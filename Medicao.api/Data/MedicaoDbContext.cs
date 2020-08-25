@@ -37,6 +37,7 @@ namespace SistemaMedicao
             modelBuilder.Entity<Medicao>(entity => {
                 entity.HasKey(o => o.Id);
                 entity.Property(o => o.Temperatura);
+                entity.Property(o => o.DtMedicao).HasColumnType("date");
             });
         }
     }

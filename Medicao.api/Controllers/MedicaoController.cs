@@ -58,12 +58,12 @@ namespace SistemaMedicao.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var telefone = _dbSet.FirstOrDefault(o => o.Id == id);
+            var medicao = _dbSet.FirstOrDefault(o => o.Id == id);
 
-            if (telefone == null)
+            if (medicao == null)
                 return NoContent();
 
-            _dbSet.Remove(telefone);
+            _dbSet.Remove(medicao);
 
             _medicaoDbContext.SaveChanges();
             

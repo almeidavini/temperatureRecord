@@ -1,3 +1,5 @@
+using System;
+
 namespace SistemaMedicao.Models
 {
     public class Medicao
@@ -6,5 +8,6 @@ namespace SistemaMedicao.Models
         public int pessoaId { get; set; }
         public Pessoa Pessoa { get; set; }
         public float Temperatura { get; set; }
+        public DateTime DtMedicao { get; set; }
     }
 }

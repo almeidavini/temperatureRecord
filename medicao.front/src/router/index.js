@@ -20,6 +20,11 @@ const routes = [
     component: () => import('../views/EditarColaborador.vue')
   },
   {
+    path: '/medicaocolaborador/:id',
+    name: 'MedicaoColaborador',
+    component: () => import('../views/MedicaoColaborador.vue')
+  },
+  {
     path: '/novocolaborador',
     name: 'NovoColaborador',
     component: () => import('../views/NovoColaborador.vue')
@@ -28,6 +33,11 @@ const routes = [
     path: '/medicoes',
     name: 'Medicoes',
     component: () => import('../views/Medicoes.vue')
+  },
+  {
+    path: '/novamedicao',
+    name: 'NovaMedicao',
+    component: () => import('../views/NovaMedicao.vue')
   }
 ]
 

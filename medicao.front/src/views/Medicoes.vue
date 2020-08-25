@@ -10,7 +10,7 @@
           <div>
           <div class="level-left">
               <b-button type="is-info mr-3" @click="getMedicoes" icon-left="refresh">Atualizar</b-button>
-              <b-button type="is-info" tag="router-link" to="/novamedicao" icon-left="thermometer-plus">Nova</b-button>
+              <b-button type="is-info" tag="router-link" to="/novamedicao" icon-left="thermometer-plus" class="">Nova</b-button>
           </div>
           <div class="level-r"></div>
           </div>
@@ -37,6 +37,13 @@
                 {{props.row.pessoa.setorId}}
               </b-table-column>
               <b-table-column
+                field="data"
+                label="Data"
+                sortable
+                centered>
+                {{props.row.dtMedicao}}
+              </b-table-column>
+              <b-table-column
                 field="temperatura"
                 label="Temperatura"
                 sortable
@@ -47,11 +54,10 @@
                 field="acoes"
                 label="Ações"
                 centered>
-                <b-button type="is-warning mr-1" icon-left="account-edit" tag="router-link" :to="'/editarcolaborador/' + props.row.id">Editar</b-button>
                 <b-button type="is-danger" icon-left="delete" @click="deleteMedicao(props.row.id)">Excluir</b-button>
               </b-table-column>
             </template>
-            <!--<template slot="empty">
+            <template slot="empty">
                 <section class="section">
                     <div class="content has-text-grey has-text-centered">
                         <p>
@@ -63,7 +69,7 @@
                         <p>Ainda não temos medições cadastradas.</p>
                     </div>
                 </section>
-            </template>-->
+            </template>
           </b-table>
         </nav>
       </div>
@@ -77,13 +83,14 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      medicoes: [],
+      medicoes:[],
       columns: [
-        /*{ field: 'temperatura', label: 'Temperatura'},
+        { field: 'temperatura', label: 'Temperatura'},
         { field: 'nome', label: 'Nome' },
         { field: 'sobrenome', label: 'Sobrenome' },
         { field: 'setor', label: 'Setor' },
-        { field: 'email', label: 'Email'}*/
+        { field: 'email', label: 'Email'},
+        { field: 'data', label: 'Data'}
       ]
     }
   },
@@ -91,11 +98,6 @@ export default {
     getMedicoes () {
       axios.get('http://localhost:5000/api/medicao').then(ret => {
         this.medicoes = ret.data
-      })
-    },
-    getSetores () {
-      axios.get('http://localhost:5000/api/setor').then(ret => {
-        this.setores = ret.data
       })
     },
     deleteMedicao (id) {
@@ -113,10 +115,19 @@ export default {
       })
     }
   },
+   dataFormatada (date) {
+      const data = new Date(date)
+      const dia = data.getDate().toString()
+      const diaF = (dia.length === 1) ? '0' + dia : dia
+      const mes = (data.getMonth() + 1).toString() // +1 pois no getMonth Janeiro começa com zero.
+      const mesF = (mes.length === 1) ? '0' + mes : mes
+      const anoF = data.getFullYear()
+      return diaF + '/' + mesF + '/' + anoF
+  },
   mounted () {
     this.getMedicoes()
   }
-}
+  }
 </script>
 
 <style scoped>
