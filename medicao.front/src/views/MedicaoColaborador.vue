@@ -38,33 +38,43 @@
             <div class="column is-2"></div>
             <div class="column is-4">
               <div class="field">
-                <b-field label="Número de identificação" class="pt-2">
+                <b-field label="Número de identificação:" class="pt-2">
                     <b-label>{{pessoa.id}}</b-label>
                 </b-field>
               </div>
               <div class="field">
-                <b-field label="Nome" class="pt-2">
+                <b-field label="Nome:" class="pt-2">
                     <b-label>{{pessoa.nome}}</b-label>
                 </b-field>
               </div>
                 <div class="field">
-                <b-field label="Sobrenome" class="pt-2">
+                <b-field label="Sobrenome:" class="pt-2">
                     <b-label>{{pessoa.sobrenome}}</b-label>
                 </b-field>
                 </div>
                 <div class="field">
-                <b-field label="E-mail" class="pt-2">
+                <b-field label="E-mail:" class="pt-2">
                     <b-label>{{pessoa.email}}</b-label>
                 </b-field>
                 </div>
                 <div class="field">
-                  <b-field label="Setor" class="pt-2">
+                  <b-field label="Setor:" class="pt-2">
                     <b-label>{{setor}}</b-label>
                   </b-field>
                 </div>
+                <div class="field">
+                  <b-field label="Data:" class="pt-2">
+                    <b-label></b-label>
+                  </b-field>
+                </div>
+                <div class="field">
+                  <b-field label="Hora:" class="pt-2">
+                    <b-label></b-label>
+                  </b-field>
+                </div>
                  <div class="field">
-                  <b-field label="Setor" class="pt-2">
-                    <b-input v-model="temperatura"></b-input>
+                  <b-field label="Temperatura:" class="pt-2">
+                    <b-input v-model="medicao.temperatura" placeholder="Digite a temperatura aferida"></b-input>
                   </b-field>
                 </div>
             </div>
@@ -87,8 +97,15 @@ export default {
         email: '',
         setorId: 0
       },
+       medicao: {
+        temperatura: '',
+        pessoaId: '',
+        dtMedicao: ''
+      },
       setores: [],
-      setor: ''
+      setor: '',
+      data: '',
+      hora: ''
     }
   },
   mounted () {
@@ -107,27 +124,22 @@ export default {
       this.$router.push('/')
     }),
     this.getSetores()
+    /*var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    // var h = today.getHours();
+    // var m = today.getMinutes();
+    // this.data = dd + '/ ' + mm + '/ ' + yyyy;*/
   },
   methods: {
-    alterarPessoa () {
-      this.isLoading = true
-      this.pessoa.setor = null
-      
-      axios.put('http://localhost:5000/api/pessoa/' + this.pessoaid, this.pessoa).then(() => {
-        this.isLoading = false
-        this.$buefy.toast.open({
-          message: 'Pessoa alterada com sucesso.',
-          type: 'is-success'
-        })
-      }).catch(() => {
-        this.isLoading = false
-        this.$buefy.toast.open({
-          message: 'Ocorreu um erro ao alterar a pesosa.',
-          type: 'is-danger'
-        })
-      })
-    },
     adicionarMedicao () {
+      this.medicao.temperatura = parseFloat(this.medicao.temperatura);
+      this.medicao.pessoaId = this.pessoa.id;
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      this.medicao.dtMedicao = yyyy + '-' + mm + '-' + dd + 'T' + String(today.getHours()) + ':' + String(today.getMinutes()) + ':' + String(today.getSeconds());
       this.isLoading = true
       axios.post('http://localhost:5000/api/medicao', this.medicao).then(() => {
         this.isLoading = false

@@ -34,14 +34,21 @@
                 label="Setor"
                 sortable
                 centered>
-                {{props.row.pessoa.setorId}}
+                {{props.row.pessoa}}
               </b-table-column>
               <b-table-column
                 field="data"
                 label="Data"
                 sortable
                 centered>
-                {{props.row.dtMedicao}}
+                {{dataFormatada(props.row.dtMedicao)}}
+              </b-table-column>
+              <b-table-column
+                field="hora"
+                label="Hora"
+                sortable
+                centered>
+                {{horaFormatada(props.row.dtMedicao)}}
               </b-table-column>
               <b-table-column
                 field="temperatura"
@@ -50,6 +57,15 @@
                 centered>
                 {{props.row.temperatura}}
               </b-table-column>
+              <!--<b-table-column
+                field="temperatura"
+                label="Temperatura"
+                sortable
+                centered
+                class="tag is-success"
+                v-if="medicoes.temperatura > 30">
+                {{props.row.temperatura}}
+              </b-table-column>-->
               <b-table-column
                 field="acoes"
                 label="Ações"
@@ -90,7 +106,8 @@ export default {
         { field: 'sobrenome', label: 'Sobrenome' },
         { field: 'setor', label: 'Setor' },
         { field: 'email', label: 'Email'},
-        { field: 'data', label: 'Data'}
+        { field: 'data', label: 'Data'},
+        { field: 'hora', label: 'Hora'}
       ]
     }
   },
@@ -113,19 +130,26 @@ export default {
           type: 'is-danger'
         })
       })
+    },
+    dataFormatada (date) {
+    const data = new Date(date)
+    const dia = data.getDate().toString()
+    const diaF = (dia.length === 1) ? '0' + dia : dia
+    const mes = (data.getMonth() + 1).toString() // +1 pois no getMonth Janeiro começa com zero.
+    const mesF = (mes.length === 1) ? '0' + mes : mes
+    const anoF = data.getFullYear()
+    return diaF + '/' + mesF + '/' + anoF
+    },
+    horaFormatada (date) {
+    const data = new Date(date)
+    const hora = data.getHours()
+    const minutos = data.getMinutes()
+    return hora + ' : ' + minutos
     }
-  },
-   dataFormatada (date) {
-      const data = new Date(date)
-      const dia = data.getDate().toString()
-      const diaF = (dia.length === 1) ? '0' + dia : dia
-      const mes = (data.getMonth() + 1).toString() // +1 pois no getMonth Janeiro começa com zero.
-      const mesF = (mes.length === 1) ? '0' + mes : mes
-      const anoF = data.getFullYear()
-      return diaF + '/' + mesF + '/' + anoF
   },
   mounted () {
     this.getMedicoes()
+    console.log()
   }
   }
 </script>
