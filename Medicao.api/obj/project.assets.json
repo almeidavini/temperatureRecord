@@ -4965,19 +4965,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vinicius Almeida\\.nuget\\packages\\": {}
+    "C:\\Users\\vinic\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Desktop\\Sistema-de-Medicao\\Medicao.api\\Medição.csproj",
+      "projectUniqueName": "C:\\Users\\vinic\\Desktop\\Nova pasta (2)\\Sistema-de-Medicao\\Medicao.api\\Medição.csproj",
       "projectName": "Medição",
-      "projectPath": "E:\\Desktop\\Sistema-de-Medicao\\Medicao.api\\Medição.csproj",
-      "packagesPath": "C:\\Users\\Vinicius Almeida\\.nuget\\packages\\",
-      "outputPath": "E:\\Desktop\\Sistema-de-Medicao\\Medicao.api\\obj\\",
+      "projectPath": "C:\\Users\\vinic\\Desktop\\Nova pasta (2)\\Sistema-de-Medicao\\Medicao.api\\Medição.csproj",
+      "packagesPath": "C:\\Users\\vinic\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vinic\\Desktop\\Nova pasta (2)\\Sistema-de-Medicao\\Medicao.api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Vinicius Almeida\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vinic\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5035,7 +5035,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -64,12 +64,12 @@
                 </div>
                 <div class="field">
                   <b-field label="Data:" class="pt-2">
-                    <b-label></b-label>
+                    <b-label>{{data}}</b-label>
                   </b-field>
                 </div>
                 <div class="field">
                   <b-field label="Hora:" class="pt-2">
-                    <b-label></b-label>
+                    <b-label>{{hora}}</b-label>
                   </b-field>
                 </div>
                  <div class="field">
@@ -122,14 +122,15 @@ export default {
         type: 'is-danger'
       })
       this.$router.push('/')
-    }),
-    this.getSetores()
-    /*var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    // var h = today.getHours();
-    // var m = today.getMinutes();
-    // this.data = dd + '/ ' + mm + '/ ' + yyyy;*/
+    })
+    var dataHora = new Date();
+    var dd = String(dataHora.getDate()).padStart(2, '0');
+    var mm = String(dataHora.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = dataHora.getFullYear();
+    var h = dataHora.getHours();
+    var m = dataHora.getMinutes();
+    this.data = dd + '/ ' + mm + '/ ' + yyyy;
+    this.hora = h + ':' + m
   },
   methods: {
     adicionarMedicao () {
@@ -147,6 +148,7 @@ export default {
           message: 'Medicao adicionada com sucesso.',
           type: 'is-success'
         })
+        document.location.reload(true);
       }).catch(() => {
         this.isLoading = false
         this.$buefy.toast.open({

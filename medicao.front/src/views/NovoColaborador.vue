@@ -114,13 +114,15 @@ export default {
           message: 'Pessoa adicionada com sucesso.',
           type: 'is-success'
         })
+        // document.location.reload(true);
       }).catch(() => {
         this.isLoading = false
         this.$buefy.toast.open({
           message: 'Ocorreu um erro ao adicionar a pesosa.',
           type: 'is-error'
-        })
+        })    
       })
+      // document.location.reload(true);
     },
     getSetores () {
       axios.get('http://localhost:5000/api/setor').then(ret => {
