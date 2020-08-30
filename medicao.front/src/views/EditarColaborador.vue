@@ -59,8 +59,7 @@
                 </div>
                 <div class="field">
                   <b-field label="Setor">
-                    <b-autocomplete rounded
-                                    v-model="setor"
+                    <b-autocomplete v-model="setor"
                                     :data="filteredDataSetor"
                                     field="nome"
                                     placeholder="Selecione o setor"

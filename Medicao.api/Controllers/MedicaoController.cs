@@ -22,6 +22,7 @@ namespace SistemaMedicao.Controllers
         public IActionResult Get()
         {
             var medicoes = _dbSet.Include(o => o.Pessoa)
+            .ThenInclude(o => o.Setor)
             .ToList();
             return Ok(medicoes);
         }

@@ -28,7 +28,7 @@
               <b-input v-model="pessoa.email"></b-input>
             </b-field>
             <b-field label="Setor">
-              <b-autocomplete rounded
+              <b-autocomplete
                 v-model="setor"
                 :data="filteredDataSetor"
                 field="nome"

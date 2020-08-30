@@ -148,13 +148,14 @@ export default {
           message: 'Medicao adicionada com sucesso.',
           type: 'is-success'
         })
-        document.location.reload(true);
+        console.log(this.medicao);
       }).catch(() => {
         this.isLoading = false
         this.$buefy.toast.open({
           message: 'Ocorreu um erro ao adicionar a medição.',
           type: 'is-error'
         })
+        console.log(this.medicao);
       })
     },
     getSetores () {

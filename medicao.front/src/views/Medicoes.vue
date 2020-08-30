@@ -34,7 +34,7 @@
                 label="Setor"
                 sortable
                 centered>
-                {{props.row.pessoa}}
+                {{props.row.pessoa.setor.nome}}
               </b-table-column>
               <b-table-column
                 field="data"
@@ -144,7 +144,7 @@ export default {
     const data = new Date(date)
     const hora = data.getHours()
     const minutos = data.getMinutes()
-    return hora + ' : ' + minutos
+    return hora + ':' + minutos
     }
   },
   mounted () {

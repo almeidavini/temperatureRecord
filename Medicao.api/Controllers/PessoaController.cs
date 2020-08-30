@@ -22,7 +22,7 @@ namespace SistemaMedicao.Controllers
         public IActionResult Get()
         {
             var pessoas = _dbSet.Include(o => o.Setor)
-                .ToList();
+            .ToList();
             return Ok(pessoas);
         }
 
