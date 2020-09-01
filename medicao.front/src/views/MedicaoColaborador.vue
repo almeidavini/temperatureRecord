@@ -136,11 +136,12 @@ export default {
     adicionarMedicao () {
       this.medicao.temperatura = parseFloat(this.medicao.temperatura);
       this.medicao.pessoaId = this.pessoa.id;
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      var yyyy = today.getFullYear();
-      this.medicao.dtMedicao = yyyy + '-' + mm + '-' + dd + 'T' + String(today.getHours()) + ':' + String(today.getMinutes()) + ':' + String(today.getSeconds());
+      // var today = new Date();
+      // var dd = String(today.getDate()).padStart(2, '0');
+      // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      // var yyyy = today.getFullYear();
+      // this.medicao.dtMedicao = yyyy + '-' + mm + '-' + dd + 'T' + String(today.getHours()) + ':' + String(today.getMinutes()) + ':' + String(today.getSeconds());
+      this.medicao.dtMedicao = new Date();
       this.isLoading = true
       axios.post('http://localhost:5000/api/medicao', this.medicao).then(() => {
         this.isLoading = false
