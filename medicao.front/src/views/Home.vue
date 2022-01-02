@@ -1,7 +1,6 @@
 <template>
     <section>
         <div class="container has-text-centered">
-            <img src="../assets/serget.png" alt="">
         </div>
     </section>
 </template>

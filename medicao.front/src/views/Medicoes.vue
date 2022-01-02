@@ -57,15 +57,6 @@
                 centered>
                 {{props.row.temperatura}}
               </b-table-column>
-              <!--<b-table-column
-                field="temperatura"
-                label="Temperatura"
-                sortable
-                centered
-                class="tag is-success"
-                v-if="medicoes.temperatura > 30">
-                {{props.row.temperatura}}
-              </b-table-column>-->
               <b-table-column
                 field="acoes"
                 label="Ações"

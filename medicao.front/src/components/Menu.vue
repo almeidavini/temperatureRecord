@@ -3,10 +3,9 @@
     <b-navbar type="is-info">
         <template slot="brand">
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <img src="../assets/logo.png" alt="Serget">
             </b-navbar-item>
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <strong>SISTEMA DE MEDIÇÃO</strong>
+                <strong>TEMPERATURE RECORD</strong>
             </b-navbar-item>
         </template>
         <template slot="end">
@@ -28,9 +27,6 @@
                     </a>
                 </div>
             </div>
-            <!--<b-navbar-item tag="router-link" to="/medicoes">
-                Registro de medições
-            </b-navbar-item>-->
             <b-navbar-item tag="router-link" to="/colaboradores">
                 Colaboradores
             </b-navbar-item>
