@@ -29,7 +29,7 @@ namespace SistemaMedicao
             
             services.AddControllers();
 
-            services.AddCors(); //Abilitar CORS a API
+            services.AddCors(); //Habilitar CORS a API
 
             //Configura conexao banco de dados
             services.AddDbContext<MedicaoDbContext>(options => options.UseSqlServer(connectionString));
